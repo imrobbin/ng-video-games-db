@@ -1,46 +1,154 @@
-<mat-progress-bar *ngIf="!games.length" mode="indeterminate"></mat-progress-bar>
-<div class="filters">
-  <mat-form-field>
-    <mat-label>Sort</mat-label>
-    <mat-select
-      panelClass="sort-select"
-      [(ngModel)]="sort"
-      (selectionChange)="searchGames(sort)"
-    >
-      <mat-option value="name">Name</mat-option>
-      <mat-option value="-released">Released</mat-option>
-      <mat-option value="-added">Added</mat-option>
-      <mat-option value="-created">Created</mat-option>
-      <mat-option value="-updated">Updated</mat-option>
-      <mat-option value="-rating">Rating</mat-option>
-      <mat-option value="metacritic">Metacritic</mat-option>
-    </mat-select>
-  </mat-form-field>
-</div>
+<mat-progress-bar
+  [style.visibility]="games.length ? 'hidden' : 'visible'"
+  mode="indeterminate"
+></mat-progress-bar>
+<div *ngIf="games.length > 0">
+  <div class="filters">
+    <mat-form-field>
+      <mat-label>Sort</mat-label>
+      <mat-select
+        panelClass="sort-select"
+        [(ngModel)]="sort"
+        (selectionChange)="searchGames(sort)"
+      >
+        <mat-option value="name">Name</mat-option>
+        <mat-option value="-released">Released</mat-option>
+        <mat-option value="-added">Added</mat-option>
+        <mat-option value="-created">Created</mat-option>
+        <mat-option value="-updated">Updated</mat-option>
+        <mat-option value="-rating">Rating</mat-option>
+        <mat-option value="metacritic">Metacritic</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-<div class="games">
-  <ng-container *ngFor="let game of games">
-    <div class="game" (click)="openGameDetails(game.id)">
-      <div class="game-thumb-container">
-        <img
-          *ngIf="game.background_image"
-          [src]="game.background_image"
-          alt="thumbnail"
-          class="game-thumbnail"
-        />
-        <p *ngIf="!game.background_image">No Image</p>
-      </div>
-      <div class="game-description">
-        <p class="game-name">{{ game.name }}</p>
-        <div class="game-platforms">
+  <div class="games">
+    <ng-container *ngFor="let game of games">
+      <div class="game" (click)="openGameDetails(game.id)">
+        <div class="game-thumb-container">
           <img
-            *ngFor="let gamePlatform of game.parent_platforms"
-            src="assets/images/platforms/{{ gamePlatform.platform.slug }}.svg"
-            [alt]="gamePlatform.platform.slug"
-            class="game-platform"
+            *ngIf="game.background_image"
+            [src]="game.background_image"
+            alt="thumbnail"
+            class="game-thumbnail"
           />
+          <p *ngIf="!game.background_image">No Image</p>
+        </div>
+        <div class="game-description">
+          <p class="game-name">{{ game.name }}</p>
+          <div class="game-platforms">
+            <img
+              *ngFor="let gamePlatform of game.parent_platforms"
+              src="assets/images/platforms/{{ gamePlatform.platform.slug }}.svg"
+              [alt]="gamePlatform.platform.slug"
+              class="game-platform"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
+  </div>
 </div>
+
+<!-- <div class="games-table">
+  <div class="search-div">
+    <mat-form-field class="search-form-field" floatLabel="never">
+      <input
+        matInput
+        [(ngModel)]="searchKey"
+        placeholder="Search"
+        autocomplete="off"
+        (keyup)="applyFilter()"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        *ngIf="searchKey"
+        (click)="onSearchClear()"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="gamesData" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="released">
+        <mat-header-cell *matHeaderCellDef>Released</mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game.released }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Rating
+        </mat-header-cell>
+        <mat-cell *matCellDef="let game">{{ game.rating }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="platforms">
+        <mat-header-cell *matHeaderCellDef>Platforms</mat-header-cell>
+        <mat-cell *matCellDef="let game">
+          <span *ngFor="let platform of game.parent_platforms; let last = last">
+            {{ platform.platform.name }}<span *ngIf="!last">, &nbsp;</span>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let game">
+          <button mat-icon-button><mat-icon>launch</mat-icon></button>
+          <button mat-icon-button color="warn">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="noDataFound">
+        <mat-footer-cell *matFooterCellDef colspan="4">
+          No Data Found
+        </mat-footer-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="4">
+
+          <mat-progress-spinner
+            mode="indeterminate"
+            diameter="50"
+          ></mat-progress-spinner>
+        </mat-footer-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedCols"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedCols"></mat-row>
+
+      <mat-footer-row
+        *matFooterRowDef="['noDataFound']"
+        [ngClass]="{
+          hide: !(
+            gamesData.filteredData.length === 0 && gamesData.data.length !== 0
+          )
+        }"
+      ></mat-footer-row>
+
+      <mat-footer-row
+        *matFooterRowDef="['loading']"
+        [ngClass]="{ hide: gamesData.data.length !== 0 }"
+      ></mat-footer-row>
+    </mat-table>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 15]"
+      [pageSize]="5"
+    ></mat-paginator>
+  </div>
+</div> -->

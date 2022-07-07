@@ -1,27 +1,17 @@
-# NgVideoGamesDb
+# Angular Video Games Database
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+`{'title:'Video Games Database','framework': 'angular','description':'we will be building a simple angular app that implements the RAWG API to list the games in a beautiful UI.'}`
 
-## Development server
+In this project, we will be building a simple angular app that implements the [RAWG API](https://rawg.io/apidocs) to list the games in a beautiful UI.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### We will learn how to:
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Start an Angular app from scratch with Angular CLI
+- Generate and make use of Angular classes and services
+- Create a game list view using the Angular Material UI
+- Connect an Angular app to [RAWG API](https://rawg.io/apidocs) and trigger http requests for getting the games.
+- Create multiple interfaces to model the api result
+- Utilizing the power of Rxjs while making http requests
+- Use Angular Material UI component library to create UI and apply css to shadow elements
+- Implement http interceptors for http headers and http errors
+- Make use of angular routing, searching, sorting, various UI components and much more

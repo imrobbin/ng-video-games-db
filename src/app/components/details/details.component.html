@@ -1,4 +1,8 @@
-<div class="details">
+<mat-progress-bar
+  [style.visibility]="game ? 'hidden' : 'visible'"
+  mode="indeterminate"
+></mat-progress-bar>
+<div class="details" *ngIf="game">
   <div class="game-banner">
     <img [src]="game?.background_image" alt="" class="game-banner-image" />
   </div>
