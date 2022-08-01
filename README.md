@@ -4,9 +4,9 @@ In this project, we will be building a simple angular app to create new and enri
 
 Online demo: [https://imrobbin.github.io/ng-video-games-db/](https://imrobbin.github.io/ng-video-games-db/)
 
-![tic-tac-toe image](https://raw.githubusercontent.com/imrobbin/ng-video-games-db/master/doc-images/ngvgdb-1.png)
+![ng-video-games-db image](https://raw.githubusercontent.com/imrobbin/ng-video-games-db/master/doc-images/ngvgdb-1.png)
 
-![tic-tac-toe image](https://raw.githubusercontent.com/imrobbin/ng-video-games-db/master/doc-images/ngvgdb-3.png)
+![ng-video-games-db image](https://raw.githubusercontent.com/imrobbin/ng-video-games-db/master/doc-images/ngvgdb-3.png)
 
 ### We will learn how to:
 
