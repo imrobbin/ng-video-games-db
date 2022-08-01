@@ -1,8 +1,12 @@
 # Angular Video Games Database
 
-`{'title:'Video Games Database','framework': 'angular','description':'we will be building a simple angular app that implements the RAWG API to list the games in a beautiful UI.'}`
+In this project, we will be building a simple angular app to create new and enrich reference cards in our search results that implements the [RAWG API](https://rawg.io/apidocs).
 
-In this project, we will be building a simple angular app that implements the [RAWG API](https://rawg.io/apidocs) to list the games in a beautiful UI.
+Online demo: [https://imrobbin.github.io/ng-video-games-db/](https://imrobbin.github.io/ng-video-games-db/)
+
+![tic-tac-toe image](https://raw.githubusercontent.com/imrobbin/tic-tac-toe-pwa/master/doc-images/ngvgdb-1.png)
+
+![tic-tac-toe image](https://raw.githubusercontent.com/imrobbin/tic-tac-toe-pwa/master/doc-images/ngvgdb-3.png)
 
 ### We will learn how to:
 
